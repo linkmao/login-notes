@@ -1,0 +1,24 @@
+<div class = "col-md-4 mx-auto">
+    <div class="card">
+        <div class ="class-header">
+            <h3>Editar nota</h3>
+        </div>
+        <div class ="class-body">
+            <form action="/notes/edit-note/{{noteEditing._id}}?_method=PUT" method= "POST">
+            {{!-- A CONTINUACIÓN SE USA UN INPUT OCULTO, PARA QUE JUNTO CON EL MIDLEWARE methodovveride
+            SE PUEDA GENERAR UNA PETICION PUT, ADEMAS DE LA LINEA QUE SIGUE, EN LA LINEA ANTERIOR SE HA USADO ?_method=PUT --}}
+                <input type="hidden" name="_method" value="PUT"> 
+                <div class="form-group">
+                    <input type="text" class= "form-control" name= "title" placeholder="Título" value='{{noteEditing.title}}'>
+                </div>
+                <div class="form-group">
+                    <textarea name ="description" class='form-control'>{{noteEditing.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
