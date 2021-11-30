@@ -7,10 +7,12 @@ const index = require('./routes/index.js')
 const users= require('./routes/users.js')
 const notes = require('./routes/notes.js')
 const flash=require('connect-flash')  // depedmencia que permite el envio de mensajes entre vistas
+const passport = require('passport')
 
 // Inicializaciones
 const app= express()
 require('./database.js')
+require('./config/passport')
 
 // Settings
 app.set('port', process.env.PORT || 3000)
@@ -35,6 +37,8 @@ app.use(session({
     resave: true,
     saveUninitialized:true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash()) // es un midleware que permite el envio de mensaje entre vistas
 
 
@@ -42,6 +46,8 @@ app.use(flash()) // es un midleware que permite el envio de mensaje entre vistas
 app.use((req,res,next)=>{
     res.locals.mensajeOk=req.flash('mensajeOk')
     res.locals.mensajeError= req.flash('mensajeError')
+    res.locals.error= req.flash('error')
+    res.locals.user=req.user || null // guaraado de la variable global user que viene desde passport, cuando el usuario está logueado
     next()
 })
 

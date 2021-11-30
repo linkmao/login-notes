@@ -1,0 +1,19 @@
+{{#if error}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{!-- Obtener un elemento de un array es con this --}}
+  {{error}}  
+  {{!-- Para que la alerta cierre se requiere importar el CDn de Js desde boostrap --}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+
+
+{{#each errors}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{!-- Obtener un elemento de un array es con this --}}
+  {{this}}  
+  {{!-- Para que la alerta cierre se requiere importar el CDn de Js desde boostrap --}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/each}}
